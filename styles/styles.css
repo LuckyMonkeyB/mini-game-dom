@@ -6,6 +6,10 @@
 body{
      margin: 0;
      padding: 0;
+     height: 100vh;
+
+     display: flex;
+     flex-direction: column;
 }
 
 img, picture, video, canvas, svg{
@@ -13,3 +17,83 @@ img, picture, video, canvas, svg{
      max-width: 100%;
 }
 
+h1{
+     margin: 0;
+     font-size: 1.8rem;
+     color: #e0e0e0;
+}
+
+header{
+     background-color: #3c433c;
+     text-align: center;
+     padding: 0.75rem;
+}
+
+main{
+     height: 95%;
+
+     display: flex;
+     flex-direction: column;
+
+     #arena{
+          /* background-color: lightblue; */
+          background-image: url('../assets/images/background/bg1.png');
+          background-position: 50% 80%;
+          background-size: cover;
+          flex: 2;
+
+     }
+     #controls{
+          background-color: #141214;
+          height: 40px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+     }
+     #jornal{
+          background-color: #fce1d0;
+          height: 25%;
+
+     }
+}
+
+/* ARENA */
+
+#arena{
+     position: relative;
+}
+
+.characters{
+     border: 1px solid green;
+     width: 50%;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, 20%);
+
+     height: 30%;
+}
+
+.sprite{
+     border: 1px solid yellow;
+     height: 100%;
+}
+
+.flip{
+     transform: scaleX(-1);
+}
+
+
+/* JORNAL */
+#jornal{
+     .jornal-log{
+          background-color: lightsalmon;
+          height: 60%;
+          /* overflow-y: auto; */
+     }
+}
