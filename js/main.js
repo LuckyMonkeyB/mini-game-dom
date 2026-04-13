@@ -27,11 +27,29 @@ function userTurn(){
 
         calculateUserDamage();
 
+        if(pvPC <= 0){
+            victory();
+        }else{
+
+        }
+
     }, 500)
 }
 
 
 function pcTurn(){
+    pcImg.src = attackImgPC;
+
+    setTimeout(() => {
+        pcImg.src = idleImgPC;
+
+        calculateUserDamage();
+
+        if(pvUser <= 0){
+            gameOver();
+        }
+
+    }, 500)
 
 }
 
@@ -57,11 +75,13 @@ function calculateUserDamage(){
 }
 
 function victory(){
-
+    pcImg.src = deadImgPC;
+    attack.disabled = true;
 }
 
 function gameOver(){
-
+    userImg.src = deadImgUser;
+    attack.disabled = true;
 }
 
 function jornalLog(){
@@ -69,5 +89,7 @@ function jornalLog(){
 }
 
 attack.addEventListener('click', function(){
-    userTurn();
+    if(pvUser > 0 && pvUser > 0){
+        userTurn();
+    }
 });
