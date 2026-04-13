@@ -10,6 +10,8 @@ body{
 
      display: flex;
      flex-direction: column;
+
+     font-family: "Bungee", sans-serif;
 }
 
 img, picture, video, canvas, svg{
@@ -20,7 +22,11 @@ img, picture, video, canvas, svg{
 h1{
      margin: 0;
      font-size: 1.8rem;
-     color: #e0e0e0;
+     color: #000;
+     text-shadow: 2px 2px 0 #fff,
+     -2px -2px 0 #fff,
+     2px 2px 0 #fff,
+     -2px -2px 0 #fff;
 }
 
 header{
@@ -44,7 +50,6 @@ main{
 
      }
      #controls{
-          background-color: #141214;
           height: 40px;
 
           display: flex;
@@ -52,8 +57,10 @@ main{
           align-items: center;
      }
      #jornal{
-          background-color: #fce1d0;
           height: 25%;
+
+          display: flex;
+          flex-direction: column;     
 
      }
 }
@@ -88,12 +95,99 @@ main{
      transform: scaleX(-1);
 }
 
+.go-foward{
+     transform: translateX(200%);
+}
+
+.hurt{
+     animation: flash .7s;
+}
+
+.deadBoss{
+     animation: shake .7s;
+}
+
+@keyframes flash {
+     0%, 50%, 100% {
+          opacity: 1;
+     }
+     25%, 75% {
+     opacity: 0;
+     }
+}
+
+@keyframes shake {
+     0% { transform: translateX(0) }
+     25% { transform: translateX(5px) }
+     50% { transform: translateX(-5px) }
+     75% { transform: translateX(5px) }
+     100% { transform: translateX(0); opacity: 0; }
+}
+
+.btn-attack{
+     position: absolute;
+     bottom: 1rem;
+     left: 50%;
+     transform: translateX(-50%);
+
+     padding: 5px 10px;
+     font-family: inherit;
+     font-size: 1.2rem;
+     color: #fff;
+     background-color: #c0392b;
+     border: 4px solid #000;
+     box-shadow: 5px 5px 0px #000;
+
+     cursor: pointer;
+
+     transition: all .1s;
+
+}
+
+.btn-attack:hover{
+     background-color: #e74c3c;
+     box-shadow: 7px 7px 0px #000;
+}
+
+.btn-attack:active{
+     /* transform: translateY(5px); */
+     box-shadow: 2px 2px 0px #000;
+}
+
+.btn-attack:disabled{
+     background-color: lightgrey;
+     color: #000;
+
+     cursor: not-allowed;
+}
+
+
 
 /* JORNAL */
 #jornal{
+     padding: 0 20px;
+     background-color: #fdf5e6;
+     border: 4px solid #000;
+     color: #1a1a1a;
+     h3{
+          margin: 0;
+          color: #c0392b;
+          border-bottom: 2px solid #000;
+     }
      .jornal-log{
-          background-color: lightsalmon;
-          height: 60%;
-          /* overflow-y: auto; */
+          height: 150px;
+
+          /* background-color: lightsalmon; */
+          font-family: 'Noto Serif JP',serif;
+
+          overflow-y: auto;
+          scrollbar-color: rgba(93, 64, 55, 0.4) rgba(255, 255, 255, 0.2);
+     
+
+          p{
+               /* margin-top: 0; */
+               margin: 0;
+               line-height: 1.6;
+          }
      }
 }

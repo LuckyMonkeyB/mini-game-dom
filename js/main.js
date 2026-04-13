@@ -1,13 +1,22 @@
+/**
+ * TO DO:
+ * jornal
+ * pv bar
+ * 
+ */
+
 let pvUser = 100;
 let pvPC = 100;
 
 
 const attackImgUser = 'assets/images/chara2/Attack_1.png';
+const shieldImgUser = 'assets/images/chara2/Shield.png';
 const idleImgUser = 'assets/images/chara2/Idle.png';
 const deadImgUser = 'assets/images/chara2/Dead.png';
 
 const attackImgPC = 'assets/images/boss1/Attack_4.png';
-const idleImgPC = 'assets/images/boss1/Scream.png';
+const screamImgPC = 'assets/images/boss1/Scream.png';
+const idleImgPC = 'assets/images/boss1/Idle.png';
 const deadImgPC = 'assets/images/boss1/Dead.png';
 
 const attack = document.querySelector('.btn-attack');
@@ -21,16 +30,21 @@ console.log('pvPc at the beginning: '+pvPC);
 
 function userTurn(){
     userImg.src = attackImgUser;
+    userImg.classList.add('go-foward');
+    userImg.classList.remove('hurt');
 
     setTimeout(() => {
-        userImg.src = idleImgUser;
+        userImg.src = shieldImgUser;
+        userImg.classList.remove('go-foward');
 
         calculateUserDamage();
 
         if(pvPC <= 0){
             victory();
         }else{
-
+            setTimeout(()=> {
+                pcTurn();
+            }, 1000)
         }
 
     }, 500)
@@ -41,9 +55,9 @@ function pcTurn(){
     pcImg.src = attackImgPC;
 
     setTimeout(() => {
-        pcImg.src = idleImgPC;
+        pcImg.src = screamImgPC;
 
-        calculateUserDamage();
+        calculatePCDamage();
 
         if(pvUser <= 0){
             gameOver();
@@ -74,13 +88,41 @@ function calculateUserDamage(){
     console.log('pvPc after calculation: '+pvPC);
 }
 
+function calculatePCDamage(){
+    let chance = Math.random();
+    let damage = 0;
+
+    console.log('chance random: '+chance);
+
+    if(chance < 0.2){
+        damage = 25;
+        console.log('chance< 0.2');
+        userImg.classList.add('hurt');
+    }else if(chance < 0.7){
+        damage = 10;
+        console.log('chance< 0.7');
+        userImg.classList.add('hurt');
+    }else{
+        damage = 0;
+        console.log('chance=0');
+    }
+
+    pvUser -= damage;
+    console.log('pvUser after calculation: '+pvUser);
+}
+
 function victory(){
+    userImg.src = idleImgUser;
+
     pcImg.src = deadImgPC;
+    pcImg.classList.add('deadBoss');
+
     attack.disabled = true;
 }
 
 function gameOver(){
     userImg.src = deadImgUser;
+
     attack.disabled = true;
 }
 
