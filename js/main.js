@@ -1,5 +1,5 @@
 // -------------------------
-let hpplayer = 100;
+let hpPlayer = 100;
 let hpPC = 100;
 
 
@@ -59,7 +59,7 @@ function pcTurn(){
 
         calculatePCDamage();
 
-        if(hpplayer <= 0){
+        if(hpPlayer <= 0){
             gameOver();
         }
 
@@ -132,7 +132,7 @@ function calculatePCDamage(){
         playerImg.src = hurtImgplayer;
         playerImg.classList.add('hurt');
         setTimeout(() => {
-            if (hpplayer > 0) {
+            if (hpPlayer > 0) {
                 playerImg.src = shieldImgplayer;
                 playerImg.classList.remove('hurt');
             }
@@ -147,7 +147,7 @@ function calculatePCDamage(){
         playerImg.src = hurtImgplayer;
         playerImg.classList.add('hurt');
         setTimeout(() => {
-            if (hpplayer > 0) {
+            if (hpPlayer > 0) {
                 playerImg.src = shieldImgplayer;
                 playerImg.classList.remove('hurt');
             }
@@ -161,8 +161,8 @@ function calculatePCDamage(){
         message = `The opponent's strike fell short!`;
     }
 
-    hpplayer -= damage;
-    console.log('hpplayer after calculation: '+hpplayer);
+    hpPlayer -= damage;
+    console.log('hpPlayer after calculation: '+hpPlayer);
 
     updateHP();
     jornalLog(message, 'pc-log');
@@ -172,7 +172,7 @@ function calculatePCDamage(){
 // --- Logic to manage health points bars ---
 function updateHP() {
     // Math.max(val1, val2) takes the highest between them. It ensures hp never goes under 0 for visual purposes (ex hp = -20)
-    const playerPercent = Math.max(0, hpplayer);
+    const playerPercent = Math.max(0, hpPlayer);
     const pcPercent = Math.max(0, hpPC);
     
     playerHpBar.style.width = playerPercent + "%";
@@ -227,7 +227,7 @@ function jornalLog(text, playerTurn){
 
 // --- Logic to start the game ---
 attack.addEventListener('click', function(){
-    if(hpplayer > 0 && hpplayer > 0){
+    if(hpPlayer > 0 && hpPlayer > 0){
         playerTurn();
     }
 });
