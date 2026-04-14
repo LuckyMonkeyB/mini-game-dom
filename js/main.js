@@ -27,16 +27,25 @@ const gameMessage = document.querySelector('.game-message');
 
 const jornaling = document.querySelector('.jornal-log');
 // -------------------------
+let playerPos = playerImg.getBoundingClientRect().left;
+let bossPos = pcImg.getBoundingClientRect().left;
+console.log('player pos: '+playerPos);
+console.log('boss pos: '+bossPos);
+console.log(bossPos - playerPos);
+
 
 console.log('hpPc at the beginning: '+hpPC);
 
 function playerTurn(){
     playerImg.src = attackImgplayer;
-    playerImg.classList.add('go-foward');
+    // playerImg.classList.add('go-foward');
+    playerImg.style.transform = `translateX(${bossPos - playerPos - 50}px)`;
 
     setTimeout(() => {
         playerImg.src = shieldImgplayer;
-        playerImg.classList.remove('go-foward');
+        // playerImg.classList.remove('go-foward');
+        playerImg.style.transform = `translateX(0)`;
+
 
         calculateplayerDamage();
 
