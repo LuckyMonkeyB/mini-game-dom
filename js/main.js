@@ -237,3 +237,12 @@ attack.addEventListener('click', function(){
         playerTurn();
     }
 });
+
+document.addEventListener('keydown', (e) =>{
+    if(e.key === 'Enter'){
+        e.preventDefault();
+        if(hpPlayer > 0 && hpPlayer > 0){
+            playerTurn();
+        }
+    }
+});
