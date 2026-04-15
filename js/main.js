@@ -37,7 +37,7 @@ console.log('hpPc at the beginning: '+hpPC);
 
 function playerTurn(){
     playerImg.src = attackImgplayer;
-    playerImg.style.transform = `translateX(${bossPos - playerPos - 50}px)`;
+    playerImg.style.transform = `translateX(${bossPos - playerPos -50}px)`;
 
     setTimeout(() => {
         playerImg.src = shieldImgplayer;
