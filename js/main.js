@@ -25,7 +25,7 @@ const playerHpBar = document.querySelector('.player-hp-fill');
 const pcHpBar = document.querySelector('.pc-hp-fill');
 const gameMessage = document.querySelector('.game-message');
 
-const jornaling = document.querySelector('.jornal-log');
+const journaling = document.querySelector('.journal-log');
 // -------------------------
 let playerPos = playerImg.getBoundingClientRect().left;
 let bossPos = pcImg.getBoundingClientRect().left;
@@ -33,17 +33,14 @@ console.log('player pos: '+playerPos);
 console.log('boss pos: '+bossPos);
 console.log(bossPos - playerPos);
 
-
 console.log('hpPc at the beginning: '+hpPC);
 
 function playerTurn(){
     playerImg.src = attackImgplayer;
-    // playerImg.classList.add('go-foward');
     playerImg.style.transform = `translateX(${bossPos - playerPos - 50}px)`;
 
     setTimeout(() => {
         playerImg.src = shieldImgplayer;
-        // playerImg.classList.remove('go-foward');
         playerImg.style.transform = `translateX(0)`;
 
 
@@ -97,7 +94,7 @@ function calculateplayerDamage(){
             }
         }, 500);
 
-        message = `CRITICAL HIT! You deal ${25} damage.`;
+        message = `CRITICAL HIT! You deal ${25} damages.`;
     
     }else if(chance < 0.7){
         damage = 10;
@@ -111,7 +108,7 @@ function calculateplayerDamage(){
             }
         }, 500);
 
-        message = `You strike the enemy for ${10} damage.`;
+        message = `You strike the enemy for ${10} damages.`;
     
     }else{
         damage = 0;
@@ -123,7 +120,7 @@ function calculateplayerDamage(){
     console.log('hpPc after calculation: '+hpPC);
 
     updateHP();
-    jornalLog(message, 'player-log');
+    journalLog(message, 'player-log');
 }
 
 // --- Logic to manage damages when pc aka boss' turn ---
@@ -147,7 +144,7 @@ function calculatePCDamage(){
             }
         }, 500);
 
-        message = `DEVASTATING BLOW! You take ${25} damage.`;
+        message = `DEVASTATING BLOW! You take ${25} damages.`;
     
     }else if(chance < 0.7){
         damage = 10;
@@ -162,7 +159,7 @@ function calculatePCDamage(){
             }
         }, 500);
 
-        message = `The opponent hits you for ${10} damage.`;
+        message = `The opponent hits you for ${10} damages.`;
     
     }else{
         damage = 0;
@@ -174,7 +171,7 @@ function calculatePCDamage(){
     console.log('hpPlayer after calculation: '+hpPlayer);
 
     updateHP();
-    jornalLog(message, 'pc-log');
+    journalLog(message, 'pc-log');
 }
 // -------------------------
 
@@ -204,7 +201,7 @@ function victory(){
     gameMessage.classList.remove('hidden');
     gameMessage.classList.add('win-text');
 
-    jornalLog('---Victory---', 'player-log');
+    journalLog('---Victory---', 'player-log');
     attack.style.display = "none";
 }
 
@@ -216,20 +213,20 @@ function gameOver(){
     gameMessage.classList.remove('hidden');
     gameMessage.classList.add('lose-text');
 
-    jornalLog('---Game Over---', 'pc-log');
+    journalLog('---Game Over---', 'pc-log');
     attack.style.display = "none";
 }
 
 // -------------------------
 
-// --- Logic to manage the fighting Jornal ---
-function jornalLog(text, playerTurn){
+// --- Logic to manage the fighting journal ---
+function journalLog(text, playerTurn){
     const p = document.createElement('p');
     p.innerText = text;
     p.classList.add(playerTurn);
-    jornaling.appendChild(p);
+    journaling.appendChild(p);
 
-    jornaling.scrollTop = jornaling.scrollHeight;
+    journaling.scrollTop = journaling.scrollHeight;
 }
 
 // -------------------------
